@@ -20,5 +20,12 @@ public class LDAPUserDetails extends GrailsUser {
 				!user.getAccountLocked( ), authorities,
 				user.getId( ));
 	}
+	
+	@Override
+	public Object writeReplace( ) throws ObjectStreamException {
+		return new GrailsUser(getUsername( ), "ldap", isEnabled( ),
+			isAccountNonExpired( ), isCredentialsNonExpired( ),
+			isAccountNonLocked( ), getAuthorities( ), getId( ));
+	}
 
 };
