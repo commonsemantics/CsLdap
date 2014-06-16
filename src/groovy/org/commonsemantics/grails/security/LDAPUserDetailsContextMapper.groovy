@@ -1,6 +1,7 @@
 package org.commonsemantics.grails.security;
 
 import java.util.Collection;
+import org.commonsemantics.grails.agents.model.AgentUri
 import org.commonsemantics.grails.agents.model.Person;
 import org.commonsemantics.grails.users.model.ProfilePrivacy
 import org.commonsemantics.grails.users.model.Role;
@@ -73,6 +74,18 @@ class LDAPUserDetailsContextMapper implements UserDetailsContextMapper {
 			// save the person
 			if(!person.save(flush: true)) {
 				System.out.println(person.errors.allErrors);
+			}
+			
+			// create the URI
+			AgentUri agentURI = new AgentUri(
+				uri: "username:" + username,
+				agent: person,
+				type: "ldap"
+			);
+		
+			// save the URI
+			if(!agentURI.save(flush: true)) {
+				System.out.println(agentURI.errors.allErrors);
 			}
 			
 			// set the privacy level
