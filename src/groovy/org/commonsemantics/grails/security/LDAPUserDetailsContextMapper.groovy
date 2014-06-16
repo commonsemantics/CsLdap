@@ -2,6 +2,7 @@ package org.commonsemantics.grails.security;
 
 import java.util.Collection;
 import org.commonsemantics.grails.agents.model.Person;
+import org.commonsemantics.grails.users.model.ProfilePrivacy
 import org.commonsemantics.grails.users.model.Role;
 import org.commonsemantics.grails.users.model.User;
 import org.commonsemantics.grails.users.model.UserRole;
@@ -74,12 +75,24 @@ class LDAPUserDetailsContextMapper implements UserDetailsContextMapper {
 				System.out.println(person.errors.allErrors);
 			}
 			
+			// set the privacy level
+			String strProfilePrivacy;
+			if(grailsApplication.config.org.commonsemantics.grails.software.ldap.profileprivacy != null
+				&& !grailsApplication.config.org.commonsemantics.grails.software.ldap.profileprivacy.equals(""))
+			{
+				strProfilePrivacy = grailsApplication.config.org.commonsemantics.grails.software.ldap.profileprivacy;
+			} else {
+				strProfilePrivacy = grailsApplication.config.org.commonsemantics.grails.software.ldap.default.profileprivacy;
+			}
+			ProfilePrivacy privacy = ProfilePrivacy.findByValue(strProfilePrivacy);
+			
 			// create the user instance
 			user = new User(
 				username: username,
 				password: "ldap",
 				enabled: "true",
-				person: person
+				person: person,
+				profilePrivacy: privacy
 			);
 		
 			// save the user

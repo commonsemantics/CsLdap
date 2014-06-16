@@ -40,6 +40,7 @@ org.commonsemantics.grails.software.ldap.ad.default.displayName = "Unknown User"
 org.commonsemantics.grails.software.ldap.ad.default.email = "no@email.com"
 org.commonsemantics.grails.software.ldap.ad.default.country = "Unknown"
 org.commonsemantics.grails.software.ldap.ad.default.affiliation = "Unknown"
+org.commonsemantics.grails.software.ldap.default.profileprivacy = "PROFILE_PRIVACY_ANONYMOUS"
 
 // AD User Details Names
 org.commonsemantics.grails.software.ldap.ad.firstName = "givenName"
@@ -49,3 +50,4 @@ org.commonsemantics.grails.software.ldap.ad.username = "sAMAccountName"
 org.commonsemantics.grails.software.ldap.ad.email = "mail"
 org.commonsemantics.grails.software.ldap.ad.country = null
 org.commonsemantics.grails.software.ldap.ad.affiliation = null
+org.commonsemantics.grails.software.ldap.profileprivacy = "PROFILE_PRIVACY_ANONYMOUS"
