@@ -188,6 +188,10 @@ class LDAPUserDetailsContextMapper implements UserDetailsContextMapper {
 			}
 		}
 		
+		if(result == null || result.equals("")) {
+			result = defaultConfig;
+		}
+		
 		return result;
 	}
 
